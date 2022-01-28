@@ -62,7 +62,7 @@ let audithours = function () {
     })
 };
 
-
+// Replace textarea element with a p element 
 let replaceTextarea = function (textareaElement) {
 
     let hoursInfo = textareaElement.closest(".hours-info");
@@ -74,8 +74,7 @@ let replaceTextarea = function (textareaElement) {
 
 
     hours[time] = [text];
-    sethours();
-
+    sethours(); //stores in localstorage
 
     createhours(text, hoursInfo);
 }
@@ -84,22 +83,20 @@ let replaceTextarea = function (textareaElement) {
 
 $(".hours").click(function () {
 
-
     $("textarea").each(function () {
         replaceTextarea($(this));
     })
-
-
+    // Becomes text area if time is valid
     let time = $(this).closest(".hours-info").attr("id");
     if (parseInt(time) >= moment().hour()) {
 
-
+        //Creates textInput element 
         let text = $(this).text();
         let textInput = $("<textarea>")
             .addClass("form-control")
             .val(text);
 
-
+        // Adds textInput element to parent 
         $(this).html(textInput);
         textInput.trigger("focus");
     }

@@ -97,3 +97,30 @@ p {
   font-size: 25px;
 }
 
+.circle-past {
+  height: 50px;
+  width: 50px;
+  background-color: #7D7064;
+  border-radius: 50%;
+}
+
+.circle-present {
+  height: 50px;
+  width: 50px;
+  background-color: #DA5544;
+  border-radius: 50%;
+}
+
+.circle-future {
+  height: 50px;
+  width: 50px;
+  background-color: #97AD5C;
+  border-radius: 50%;
+}
+
+.p2 {
+  display: flex;
+  font-size: 25px;
+  margin-top: 10px;
+  padding: 10px;
+}
