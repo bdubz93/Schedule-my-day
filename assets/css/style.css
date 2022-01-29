@@ -1,0 +1,100 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  color: #666666;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+}
+
+textarea {
+  background: transparent;
+  border: none;
+  resize: none;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.jumbotron {
+  background-color: #536B78;
+  text-align: center;
+  color: white;
+  border-bottom: 10px solid #22333B;
+}
+
+.lead {
+  padding-top: 10px;
+}
+
+.description{
+  margin: 10px;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+.row {
+  white-space: pre-wrap;
+  height: 80px;
+  border-top: 1px solid #CEE5F2;
+}
+
+.hour {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #CEE5F2;
+  font-size: 25px;
+  color: #ffffff; 
+  background-color: #22333B;
+}
+
+.past {
+  background-color: #7D7064;
+  color: white;
+}
+
+.present {
+  background-color: #DA5544;
+  color: white;
+}
+
+.future {
+  background-color: #97AD5C;
+  color: white;
+}
+
+.saveBtn {
+  font-size: 30px;
+  border: none;
+  color: #ffffff; 
+  background-color: #22333B;
+}
+
+.saveBtn:hover {
+  background-color: rgba(99, 112, 129, 1);
+}
+
+footer {
+  margin-top: 30px;
+  padding: 10px;
+  text-align: center;
+  background-color: #536B78;
+  border-radius: 0;
+}
+
+footer h3 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+
