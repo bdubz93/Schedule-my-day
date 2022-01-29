@@ -1,7 +1,9 @@
-var today = moment();
+// Using moment to set time and date
+let today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
-var hours = {
+// Hour variables
+let hours = {
     "9": [],
     "10": [],
     "11": [],
@@ -13,49 +15,45 @@ var hours = {
     "17": []
 };
 
-var sethours = function() {
+// Adds to localstorage
+let sethours = function () {
     localStorage.setItem("hours", JSON.stringify(hours));
 }
 
-var gethours = function() {
-
-
-    var loadedhours = JSON.parse(localStorage.getItem("hours"));
+// Loads from localstorage and creates in the proper row
+let gethours = function () {
+    let loadedhours = JSON.parse(localStorage.getItem("hours"));
     if (loadedhours) {
         hours = loadedhours
 
 
-        $.each(hours, function(hour, hours) {
-            var hourDiv = $("#" + hour);
+        $.each(hours, function (hour, hours) {
+            let hourDiv = $("#" + hour);
             createhours(hours, hourDiv);
         })
     }
 
-
     audithours()
 }
-
-var createhours = function(hoursText, hourDiv) {
-
-
-    var hoursDiv = hourDiv.find(".hours");
-    var hoursP = $("<p>")
+// Creates a text box in corresponding hour
+let createhours = function (hoursText, hourDiv) {
+    let hoursDiv = hourDiv.find(".hours");
+    let hoursP = $("<p>")
         .addClass("description")
         .text(hoursText)
     hoursDiv.html(hoursP);
 }
 
-var audithours = function() {
+// Chnages the background colour based on current time
+let audithours = function () {
+    let currentHour = moment().hour();
+    $(".hours-info").each(function () {
+        let elementHour = parseInt($(this).attr("id"));
 
-
-    var currentHour = moment().hour();
-    $(".hours-info").each( function() {
-        var elementHour = parseInt($(this).attr("id"));
-
-        if ( elementHour < currentHour ) {
+        if (elementHour < currentHour) {
             $(this).removeClass(["present", "future"]).addClass("past");
         }
-        else if ( elementHour === currentHour ) {
+        else if (elementHour === currentHour) {
             $(this).removeClass(["past", "future"]).addClass("present");
         }
         else {
@@ -64,19 +62,18 @@ var audithours = function() {
     })
 };
 
-var replaceTextarea = function(textareaElement) {
+
+let replaceTextarea = function (textareaElement) {
+
+    let hoursInfo = textareaElement.closest(".hours-info");
+    let textArea = hoursInfo.find("textarea");
 
 
-
-    var hoursInfo = textareaElement.closest(".hours-info");
-    var textArea = hoursInfo.find("textarea");
-
-
-    var time = hoursInfo.attr("id");
-    var text = textArea.val();
+    let time = hoursInfo.attr("id");
+    let text = textArea.val();
 
 
-    hours[time] = [text]; 
+    hours[time] = [text];
     sethours();
 
 
@@ -85,21 +82,20 @@ var replaceTextarea = function(textareaElement) {
 
 
 
+$(".hours").click(function () {
 
-$(".hours").click(function() {
 
-
-    $("textarea").each(function() {
+    $("textarea").each(function () {
         replaceTextarea($(this));
     })
 
 
-    var time = $(this).closest(".hours-info").attr("id");
+    let time = $(this).closest(".hours-info").attr("id");
     if (parseInt(time) >= moment().hour()) {
 
 
-        var text = $(this).text();
-        var textInput = $("<textarea>")
+        let text = $(this).text();
+        let textInput = $("<textarea>")
             .addClass("form-control")
             .val(text);
 
@@ -109,16 +105,16 @@ $(".hours").click(function() {
     }
 })
 
-
-$(".saveBtn").click(function() {
+// Save Button Click
+$(".saveBtn").click(function () {
     replaceTextarea($(this));
 })
 
-
-timeToHour = 3600000 - today.milliseconds(); 
-setTimeout(function() {
+// Chnages clolour depending on current hour
+timeToHour = 3600000 - today.milliseconds();
+setTimeout(function () {
     setInterval(audithours, 3600000)
 }, timeToHour);
 
-
+// Grabs from localstorage on load
 gethours();
